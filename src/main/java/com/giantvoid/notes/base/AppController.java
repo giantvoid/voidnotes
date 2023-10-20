@@ -54,7 +54,7 @@ public class AppController {
                 //taskbar.setIconImage(GuiFactory.APP_IMAGE_MAC);
                 return;
             }
-            taskbar.setIconImage(GuiFactory.APP_IMAGE);
+            //taskbar.setIconImage(GuiFactory.APP_IMAGE);
         }
     }
 

@@ -34,7 +34,7 @@ want to create a note `todo` in directory `[NOTES_DIRECTORY]/projects/first app`
 type `projects/first app/todo` in the search field and press `Enter`.
 
 To hide tool windows in their current state even when always on top is enabled, use
-`Ctrl + H` on Linux and Windows. On macOS, use the macOS standard shortcut `Cmd + H`.
+`Shift + Esc`. It works almost the same way as `Cmd + H` on macOS.
 
 Tested and optimized for: Linux, Windows, macOS, and Raspberry Pi.
 
@@ -62,15 +62,19 @@ rename, delete, and do whatever you want.
 Everything you type is saved immediately. There is no save button. There is no
 auto-save. Just type and close the window with `Esc` when you're done.
 
+If you want to hide both editor and search windows in their current state, use
+`Shift + Esc`.
+
 The editor supports a few keyboard shortcuts, besides the usual ones such as `Ctrl + C`
 for copy, `Ctrl + V` for paste etc.
 
-| Shortcut   | Description                   |
-|------------|-------------------------------|
-| `Ctrl + M` | Toggle monospaced font on/off |
-| `Ctrl + +` | Increase font size            |
-| `Ctrl + -` | Decrease font size            |
-| `Esc`      | Close editor window           |
+| Shortcut      | Description                    |
+|---------------|--------------------------------|
+| `Ctrl + M`    | Toggle monospaced font on/off  |
+| `Ctrl + +`    | Increase font size             |
+| `Ctrl + -`    | Decrease font size             |
+| `Esc`         | Close editor window            |
+| `Shift + Esc` | Hide editor and search windows |
 
 ## Configuration
 

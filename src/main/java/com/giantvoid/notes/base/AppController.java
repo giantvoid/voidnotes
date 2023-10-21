@@ -26,6 +26,7 @@ public class AppController {
 
     private boolean escapeEnabled = true;
     private boolean systemTrayEnabled;
+    private boolean reopenEditorOnShow = false;
 
     private final Settings settings;
     private final SearchService searchService;
@@ -106,7 +107,7 @@ public class AppController {
             if (!escapeEnabled || e.getID() != KeyEvent.KEY_PRESSED || e.getKeyCode() != KeyEvent.VK_ESCAPE) {
                 return false;
             }
-            escapePressed();
+            escapePressed(e.isShiftDown());
             return true;
         });
     }
@@ -115,7 +116,12 @@ public class AppController {
         return searchFrame.getSearchInput();
     }
 
-    private void escapePressed() {
+    private void escapePressed(boolean isShiftDown) {
+        if (isShiftDown) {
+            hide();
+            return;
+        }
+
         if (editorFrame.isVisible()) {
             closeEditorFrame();
             if (editorFrame.getSearchItem().type() == CREATE_NOTE) {
@@ -146,6 +152,16 @@ public class AppController {
         searchFrame.toFront();
         searchFrame.requestFocus();
         searchFrame.focusSearchInput();
+        reopenEditorIfNecessary();
+    }
+
+    public void reopenEditorIfNecessary() {
+        if (reopenEditorOnShow) {
+            reopenEditorOnShow = false;
+            editorFrame.setVisible(true);
+            editorFrame.toFront();
+            editorFrame.requestFocus();
+        }
     }
 
     public void closeSearchFrame() {
@@ -277,5 +293,11 @@ public class AppController {
 
     public Settings getSettings() {
         return settings;
+    }
+
+    public void hide() {
+        reopenEditorOnShow = editorFrame.isVisible();
+        editorFrame.setVisible(false);
+        searchFrame.setState(Frame.ICONIFIED);
     }
 }

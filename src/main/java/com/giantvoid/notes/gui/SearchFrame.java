@@ -41,6 +41,12 @@ public class SearchFrame extends JFrame {
             public void windowClosing(WindowEvent e) {
                 controller.closeSearchFrame();
             }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+                controller.reopenEditorIfNecessary();
+            }
+
         });
         addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent evt) {

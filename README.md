@@ -21,7 +21,7 @@ download the latest version for your OS.
 - Plain text notes stored in a user defined directory (default: `~/VoidNotes`). Just a
 usual folder with `.txt` files. Feel free to edit them with any other text editor.
 - A simple window for finding and opening notes.
-- Very keyboard-oriented. No mouse required.
+- Very keyboard-oriented.
 - Immediate saving of notes. No save button. No auto-save. Just type and close the window
 with `Esc` when you're done.
 - Dark mode. Type `/dark on` or `/dark off` in the search field and press `Enter` to
@@ -32,6 +32,9 @@ menu with a few options.
 Use relative path if you want to create a note in a subdirectory. For example, if you
 want to create a note `todo` in directory `[NOTES_DIRECTORY]/projects/first app`, just
 type `projects/first app/todo` in the search field and press `Enter`.
+
+To hide tool windows in their current state even when always on top is enabled, use
+`Ctrl + H` on Linux and Windows. On macOS, use the macOS standard shortcut `Cmd + H`.
 
 Tested and optimized for: Linux, Windows, macOS, and Raspberry Pi.
 

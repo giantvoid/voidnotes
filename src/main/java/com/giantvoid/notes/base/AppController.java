@@ -46,16 +46,9 @@ public class AppController {
     private void initializeTaskbar() {
         if (Taskbar.isTaskbarSupported()) {
             Taskbar taskbar = Taskbar.getTaskbar();
-            if (taskbar == null) {
-                return;
-            }
-            if (OSUtils.isMac()) {
+            if (taskbar != null && OSUtils.isMac()) {
                 taskbar.setMenu(GuiFactory.createPopupMenu(this));
-                // TODO: set dock icon as soon as icon is available
-                //taskbar.setIconImage(GuiFactory.APP_IMAGE_MAC);
-                return;
             }
-            //taskbar.setIconImage(GuiFactory.APP_IMAGE);
         }
     }
 

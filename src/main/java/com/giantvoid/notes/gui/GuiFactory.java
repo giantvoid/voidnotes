@@ -1,6 +1,7 @@
 package com.giantvoid.notes.gui;
 
 import com.giantvoid.notes.base.AppController;
+import com.giantvoid.notes.base.OSUtils;
 import com.giantvoid.notes.base.Objects;
 
 import javax.swing.*;
@@ -14,7 +15,8 @@ import java.awt.event.MouseEvent;
 import static com.giantvoid.notes.base.Objects.APP_NAME;
 
 public class GuiFactory {
-    public static final Image APP_IMAGE = Toolkit.getDefaultToolkit().getImage(Objects.class.getResource("/logo.png"));
+    private static final Image APP_IMAGE = Toolkit.getDefaultToolkit().getImage(Objects.class.getResource("/logo.png"));
+    private static final Image APP_IMAGE_MAC = Toolkit.getDefaultToolkit().getImage(Objects.class.getResource("/logo_mac.png"));
 
     private static final Color DARK_MODE_BORDER_COLOR = Color.DARK_GRAY;
     private static final Color LIGHT_MODE_BORDER_COLOR = Color.LIGHT_GRAY;
@@ -37,6 +39,9 @@ public class GuiFactory {
     private static final Font EDITOR_FONT_MONO = new Font(Font.MONOSPACED, Font.PLAIN, 12);
     private static final Font EDITOR_FONT_SANS_SERIF = new Font(Font.SANS_SERIF, Font.PLAIN, 12);
 
+    public static Image getAppImage() {
+        return OSUtils.isMac() ? APP_IMAGE_MAC : APP_IMAGE;
+    }
     public static JPanel createBorderLayoutPanel(AppController controller) {
         JPanel panel = new JPanel(new BorderLayout());
         setBackgroundColor(controller, panel);
@@ -94,7 +99,7 @@ public class GuiFactory {
     public static TrayIcon createTrayIcon(AppController controller) {
         PopupMenu popup = createPopupMenu(controller);
 
-        TrayIcon trayIcon = new TrayIcon(APP_IMAGE, APP_NAME, popup);
+        TrayIcon trayIcon = new TrayIcon(getAppImage(), APP_NAME, popup);
         trayIcon.setImageAutoSize(true);
         trayIcon.addMouseListener(new MouseAdapter() {
             @Override

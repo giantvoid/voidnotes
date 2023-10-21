@@ -12,7 +12,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import static com.giantvoid.notes.base.Objects.APP_NAME;
-import static com.giantvoid.notes.gui.GuiFactory.APP_IMAGE;
 
 public class SearchFrame extends JFrame {
     private final AppController controller;
@@ -32,7 +31,7 @@ public class SearchFrame extends JFrame {
         setLocation(controller.getSettings().getSearchFrameX(), controller.getSettings().getSearchFrameY());
         setMinimumSize(new Dimension(Settings.MIN_SEARCH_FRAME_WIDTH, Settings.MIN_SEARCH_FRAME_HEIGHT));
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        setIconImage(APP_IMAGE);
+        setIconImage(GuiFactory.getAppImage());
         GuiFactory.setBackgroundColor(controller, this);
         setAlwaysOnTop(controller.getSettings().isAlwaysOnTop());
 

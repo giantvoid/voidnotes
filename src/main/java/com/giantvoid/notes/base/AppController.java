@@ -6,6 +6,9 @@ import com.giantvoid.notes.gui.SearchFrame;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.desktop.AppReopenedEvent;
+import java.awt.desktop.AppReopenedListener;
+import java.awt.desktop.QuitStrategy;
 import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
@@ -34,13 +37,22 @@ public class AppController {
     public AppController() {
         settings = new Settings();
         searchService = new SearchService(this);
-        createFrames();
 
         initializeTaskbar();
+        createFrames();
+
         initializeInitialValues();
         initializeSystemTray();
         initializeNotesDirectoryChooser();
         initializeEscapeKeyListener();
+        initializeDesktop();
+    }
+
+    private void initializeDesktop() {
+        if (OSUtils.isMac()) {
+            Desktop.getDesktop().setQuitStrategy(QuitStrategy.CLOSE_ALL_WINDOWS);
+            Desktop.getDesktop().addAppEventListener((AppReopenedListener) e -> showSearchFrame());
+        }
     }
 
     private void initializeTaskbar() {
@@ -48,6 +60,7 @@ public class AppController {
             Taskbar taskbar = Taskbar.getTaskbar();
             if (taskbar != null && OSUtils.isMac()) {
                 taskbar.setMenu(GuiFactory.createPopupMenu(this));
+                taskbar.setIconImage(GuiFactory.getAppImage());
             }
         }
     }
@@ -110,7 +123,7 @@ public class AppController {
     }
 
     private void escapePressed(boolean isShiftDown) {
-        if (isShiftDown) {
+        if (isShiftDown && !OSUtils.isMac()) {
             hide();
             return;
         }
@@ -120,6 +133,7 @@ public class AppController {
             if (editorFrame.getSearchItem().type() == CREATE_NOTE) {
                 updateSearchInput(getSearchInput());
             }
+            focusSearchFrame();
             return;
         }
         if (searchFrame.isVisible()) {
@@ -142,10 +156,14 @@ public class AppController {
 
     public void showSearchFrame() {
         searchFrame.setVisible(true);
+        focusSearchFrame();
+        reopenEditorIfNecessary();
+    }
+
+    public void focusSearchFrame() {
         searchFrame.toFront();
         searchFrame.requestFocus();
         searchFrame.focusSearchInput();
-        reopenEditorIfNecessary();
     }
 
     public void reopenEditorIfNecessary() {
@@ -158,10 +176,10 @@ public class AppController {
     }
 
     public void closeSearchFrame() {
-        searchFrame.dispose();
         if (!systemTrayEnabled) {
             exit();
         }
+        searchFrame.dispose();
     }
 
     public void exit() {

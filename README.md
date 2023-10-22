@@ -33,8 +33,9 @@ Use relative path if you want to create a note in a subdirectory. For example, i
 want to create a note `todo` in directory `[NOTES_DIRECTORY]/projects/first app`, just
 type `projects/first app/todo` in the search field and press `Enter`.
 
-To hide tool windows in their current state even when always on top is enabled, use
-`Shift + Esc`. It works almost the same way as `Cmd + H` on macOS.
+On Linux and Windows, to hide tool windows in their current state without closing them,
+use `Shift + Esc`. For Mac, there is already a system-wide shortcut for that:
+`⌘ cmd` + `H`.
 
 Tested and optimized for: Linux, Windows, macOS, and Raspberry Pi.
 
@@ -63,18 +64,18 @@ Everything you type is saved immediately. There is no save button. There is no
 auto-save. Just type and close the window with `Esc` when you're done.
 
 If you want to hide both editor and search windows in their current state, use
-`Shift + Esc`.
+`Shift` + `Esc` for Linux and Windows, and `⌘ cmd` + `H` for macOS.
 
-The editor supports a few keyboard shortcuts, besides the usual ones such as `Ctrl + C`
-for copy, `Ctrl + V` for paste etc.
+The editor supports a few keyboard shortcuts, besides the usual ones such as `Ctrl` + `C`
+(`⌘ cmd` + `C`) for copy, `Ctrl` + `V` (`⌘ cmd` + `V`) for paste and so on.
 
-| Shortcut      | Description                    |
-|---------------|--------------------------------|
-| `Ctrl + M`    | Toggle monospaced font on/off  |
-| `Ctrl + +`    | Increase font size             |
-| `Ctrl + -`    | Decrease font size             |
-| `Esc`         | Close editor window            |
-| `Shift + Esc` | Hide editor and search windows |
+| Shortcut                         | Description                                    |
+|----------------------------------|------------------------------------------------|
+| `Ctrl` + `M` or `⌘ cmd` + `M`    | Toggle monospaced font on/off                  |
+| `Ctrl` + `+` or `⌘ cmd` + `+`    | Increase font size                             |
+| `Ctrl` + `-` or `⌘ cmd` + `-`    | Decrease font size                             |
+| `Esc`                            | Close editor window                            |
+| `Shift` + `Esc` or `⌘ cmd` + `H` | Hide editor and search windows, preserve state |
 
 ## Configuration
 

@@ -113,9 +113,7 @@ public class SearchPanel extends JPanel {
             updateEnabled = true;
         }
         noteList.repaint();
-        SwingUtilities.invokeLater(() -> {
-            searchField.setCaretPosition(searchField.getText().length());
-        });
+        SwingUtilities.invokeLater(() -> searchField.setCaretPosition(searchField.getText().length()));
     }
 
     public String getSearchText() {

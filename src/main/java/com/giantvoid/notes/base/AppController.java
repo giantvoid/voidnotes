@@ -140,9 +140,13 @@ public class AppController {
             if (searchInput != null && !searchInput.isBlank()) {
                 searchFrame.setSearchInput("");
             } else {
-                closeSearchFrame();
+                minimizeSearchFrame();
             }
         }
+    }
+
+    private void minimizeSearchFrame() {
+        searchFrame.setState(Frame.ICONIFIED);
     }
 
     public SearchFrame getSearchFrame() {
@@ -315,6 +319,6 @@ public class AppController {
     public void hide() {
         reopenEditorOnShow = editorFrame.isVisible();
         editorFrame.setVisible(false);
-        searchFrame.setState(Frame.ICONIFIED);
+        minimizeSearchFrame();
     }
 }

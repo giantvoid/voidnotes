@@ -6,7 +6,7 @@
 
     <groupId>com.giantvoid</groupId>
     <artifactId>voidnotes</artifactId>
-    <version>1.1</version>
+    <version>1.2-SNAPSHOT</version>
 
     <name>Void Notes</name>
     <description>Minimalistic tool for focused, content-oriented note-taking.</description>

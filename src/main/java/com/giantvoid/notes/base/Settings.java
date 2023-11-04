@@ -24,8 +24,14 @@ public class Settings {
     private boolean darkMode = DEFAULT_DARK_MODE;
 
     private static final String PROP_ALWAYS_ON_TOP = "always_on_top";
-    private static final boolean DEFAULT_ALWAYS_ON_TOP = true;
+    private static final boolean DEFAULT_ALWAYS_ON_TOP = false;
     private boolean alwaysOnTop = DEFAULT_ALWAYS_ON_TOP;
+
+    private static final String PROP_SAVE_MODE = "save_mode";
+    public static final String SAVE_MODE_ON_CLOSE = "on_close";
+    public static final String SAVE_MODE_IMMEDIATE = "immediate";
+    private static final String DEFAULT_SAVE_MODE = SAVE_MODE_ON_CLOSE;
+    private String saveMode = DEFAULT_SAVE_MODE;
 
     private static final String PROP_ENABLE_SYSTEM_TRAY = "enable_system_tray";
     private static final boolean DEFAULT_ENABLE_SYSTEM_TRAY = true;
@@ -141,6 +147,7 @@ public class Settings {
         setAlwaysOnTop(getBooleanValue(settings, PROP_ALWAYS_ON_TOP, DEFAULT_ALWAYS_ON_TOP));
         setEditorFontMonospaced(getBooleanValue(settings, PROP_EDITOR_FONT_MONOSPACED, DEFAULT_EDITOR_FONT_MONOSPACED));
         setEditorFontSize(getIntValue(settings, PROP_EDITOR_FONT_SIZE, DEFAULT_EDITOR_FONT_SIZE));
+        setSaveMode(getStringValue(settings, PROP_SAVE_MODE, DEFAULT_SAVE_MODE, SAVE_MODE_ON_CLOSE, SAVE_MODE_IMMEDIATE));
     }
 
     private boolean getBooleanValue(Properties settings, String propertyName, boolean defaultValue) {
@@ -159,6 +166,21 @@ public class Settings {
         } catch (NumberFormatException e) {
             return defaultValue;
         }
+    }
+
+    private String getStringValue(Properties settings, String propertyName, String defaultValue, String... allowedValues) {
+        if (!settings.containsKey(propertyName)) {
+            return defaultValue;
+        }
+        if (allowedValues != null) {
+            String value = settings.getProperty(propertyName);
+            for (String allowedValue : allowedValues) {
+                if (allowedValue.equalsIgnoreCase(value)) {
+                    return allowedValue;
+                }
+            }
+        }
+        return defaultValue;
     }
 
     public void save() {
@@ -180,6 +202,7 @@ public class Settings {
         settings.put(PROP_ALWAYS_ON_TOP, String.valueOf(isAlwaysOnTop()));
         settings.put(PROP_EDITOR_FONT_MONOSPACED, String.valueOf(isEditorFontMonospaced()));
         settings.put(PROP_EDITOR_FONT_SIZE, String.valueOf(getEditorFontSize()));
+        settings.put(PROP_SAVE_MODE, getSaveMode());
         settings.put("min_" + PROP_TAB_SIZE, String.valueOf(MIN_TAB_SIZE));
         settings.put("min_" + PROP_EDITOR_FONT_SIZE, String.valueOf(MIN_EDITOR_FONT_SIZE));
         settings.put("default_" + PROP_DIRECTORY + "_name", DEFAULT_DIRECTORY_NAME);
@@ -328,5 +351,21 @@ public class Settings {
 
     public void setAlwaysOnTop(boolean alwaysOnTop) {
         this.alwaysOnTop = alwaysOnTop;
+    }
+
+    public String getSaveMode() {
+        return saveMode;
+    }
+
+    public void setSaveMode(String saveMode) {
+        if (saveMode != null && (saveMode.equals(SAVE_MODE_ON_CLOSE) || saveMode.equals(SAVE_MODE_IMMEDIATE))) {
+            this.saveMode = saveMode;
+        } else {
+            this.saveMode = DEFAULT_SAVE_MODE;
+        }
+    }
+
+    public boolean isSaveModeImmediate() {
+        return SAVE_MODE_IMMEDIATE.equals(saveMode);
     }
 }

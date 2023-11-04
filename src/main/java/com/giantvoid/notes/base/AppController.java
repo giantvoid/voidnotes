@@ -6,7 +6,6 @@ import com.giantvoid.notes.gui.SearchFrame;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.desktop.AppReopenedEvent;
 import java.awt.desktop.AppReopenedListener;
 import java.awt.desktop.QuitStrategy;
 import java.awt.event.KeyEvent;
@@ -129,7 +128,7 @@ public class AppController {
         }
 
         if (editorFrame.isVisible()) {
-            closeEditorFrame();
+            closeEditor();
             if (editorFrame.getSearchItem().type() == CREATE_NOTE) {
                 updateSearchInput(getSearchInput());
             }
@@ -176,6 +175,7 @@ public class AppController {
     }
 
     public void closeSearchFrame() {
+        closeEditor();
         if (!systemTrayEnabled) {
             exit();
         }
@@ -183,6 +183,7 @@ public class AppController {
     }
 
     public void exit() {
+        closeEditor();
         System.exit(0);
     }
 
@@ -203,7 +204,14 @@ public class AppController {
         editorFrame.setVisible(true);
     }
 
-    public void closeEditorFrame() {
+    public void closeEditor() {
+        if (!editorFrame.isVisible()) {
+            return;
+        }
+
+        if (!settings.isSaveModeImmediate()) {
+            OSUtils.saveFileIfContentChanged(editorFrame.getSearchItem().path(), editorFrame.getText());
+        }
         editorFrame.dispose();
     }
 
@@ -295,10 +303,8 @@ public class AppController {
     }
 
     public void contentChanged(Path path, String text) {
-        try {
-            Files.writeString(path, text);
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (settings.isSaveModeImmediate()) {
+            OSUtils.saveFile(path, text);
         }
     }
 

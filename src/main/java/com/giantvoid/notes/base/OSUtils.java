@@ -4,6 +4,10 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.security.MessageDigest;
+import java.util.Arrays;
 
 public class OSUtils {
     public static void openFileManager(File file) {
@@ -38,5 +42,26 @@ public class OSUtils {
 
     public static boolean isLinux() {
         return System.getProperty("os.name").toLowerCase().startsWith("linux");
+    }
+
+    public static void saveFile(Path path, String text) {
+        try {
+            Files.writeString(path, text);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void saveFileIfContentChanged(Path path, String text) {
+        try {
+            byte[] oldTextHash = MessageDigest.getInstance("MD5").digest(Files.readAllBytes(path));
+            byte[] newTextHash = MessageDigest.getInstance("MD5").digest(text.getBytes());
+            if (Arrays.equals(oldTextHash, newTextHash)) {
+                return;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        saveFile(path, text);
     }
 }

@@ -104,4 +104,8 @@ public class EditorPanel extends JPanel {
         editor.setCaretPosition(0);
         undoManager.discardAllEdits();
     }
+
+    public String getText() {
+        return editor.getText();
+    }
 }

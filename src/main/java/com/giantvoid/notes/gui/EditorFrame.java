@@ -37,7 +37,7 @@ public class EditorFrame extends JDialog {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                controller.closeEditorFrame();
+                controller.closeEditor();
             }
         });
         addComponentListener(new ComponentAdapter() {
@@ -71,5 +71,9 @@ public class EditorFrame extends JDialog {
 
     public SearchItem getSearchItem() {
         return searchItem;
+    }
+
+    public String getText() {
+        return editorPanel.getText();
     }
 }

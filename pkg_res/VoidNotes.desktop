@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Void Notes
+GenericName=Notes
+Comment=Note-taking application focused on workflow speed, simplicity and ease of use
+Version=1.2
+Exec=VoidNotes
+Icon=VoidNotes
+Type=Application
+Categories=Office;
+Terminal=false

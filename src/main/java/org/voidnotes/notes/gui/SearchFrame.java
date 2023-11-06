@@ -1,8 +1,8 @@
-package com.giantvoid.notes.gui;
+package org.voidnotes.notes.gui;
 
-import com.giantvoid.notes.base.AppController;
-import com.giantvoid.notes.base.Objects;
-import com.giantvoid.notes.base.Settings;
+import org.voidnotes.notes.base.AppController;
+import org.voidnotes.notes.base.Objects;
+import org.voidnotes.notes.base.Settings;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +11,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-import static com.giantvoid.notes.base.Objects.APP_NAME;
+import static org.voidnotes.notes.base.Objects.APP_NAME;
 
 public class SearchFrame extends JFrame {
     private final AppController controller;

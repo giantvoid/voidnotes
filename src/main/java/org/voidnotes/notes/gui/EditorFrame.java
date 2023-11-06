@@ -1,8 +1,8 @@
-package com.giantvoid.notes.gui;
+package org.voidnotes.notes.gui;
 
-import com.giantvoid.notes.base.AppController;
-import com.giantvoid.notes.base.Objects.SearchItem;
-import com.giantvoid.notes.base.Settings;
+import org.voidnotes.notes.base.AppController;
+import org.voidnotes.notes.base.Settings;
+import org.voidnotes.notes.base.Objects;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +17,7 @@ public class EditorFrame extends JDialog {
 
     private EditorPanel editorPanel;
 
-    private SearchItem searchItem;
+    private Objects.SearchItem searchItem;
 
     public EditorFrame(AppController controller) {
         super(controller.getSearchFrame());
@@ -61,7 +61,7 @@ public class EditorFrame extends JDialog {
         getContentPane().add(editorPanel, BorderLayout.CENTER);
     }
 
-    public void openFile(File notesDirectory, SearchItem searchItem) {
+    public void openFile(File notesDirectory, Objects.SearchItem searchItem) {
         this.searchItem = searchItem;
         String title = searchItem.path().toFile().getAbsolutePath().substring(notesDirectory.getAbsolutePath().length() + 1);
         title = title.substring(0, title.lastIndexOf('.'));
@@ -69,7 +69,7 @@ public class EditorFrame extends JDialog {
         editorPanel.openFile(searchItem.path());
     }
 
-    public SearchItem getSearchItem() {
+    public Objects.SearchItem getSearchItem() {
         return searchItem;
     }
 

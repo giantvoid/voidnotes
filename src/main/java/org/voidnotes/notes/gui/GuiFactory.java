@@ -1,8 +1,8 @@
-package com.giantvoid.notes.gui;
+package org.voidnotes.notes.gui;
 
-import com.giantvoid.notes.base.AppController;
-import com.giantvoid.notes.base.OSUtils;
-import com.giantvoid.notes.base.Objects;
+import org.voidnotes.notes.base.AppController;
+import org.voidnotes.notes.base.OSUtils;
+import org.voidnotes.notes.base.Objects;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -12,7 +12,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import static com.giantvoid.notes.base.Objects.APP_NAME;
+import static org.voidnotes.notes.base.Objects.APP_NAME;
 
 public class GuiFactory {
     private static final Image APP_IMAGE = Toolkit.getDefaultToolkit().getImage(Objects.class.getResource("/logo.png"));

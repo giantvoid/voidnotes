@@ -1,8 +1,8 @@
-package com.giantvoid.notes.gui;
+package org.voidnotes.notes.gui;
 
-import com.giantvoid.notes.base.AppController;
-import com.giantvoid.notes.base.OSUtils;
-import com.giantvoid.notes.base.Settings;
+import org.voidnotes.notes.base.AppController;
+import org.voidnotes.notes.base.OSUtils;
+import org.voidnotes.notes.base.Settings;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;

@@ -1,8 +1,7 @@
-package com.giantvoid.notes.gui;
+package org.voidnotes.notes.gui;
 
-import com.giantvoid.notes.base.AppController;
-import com.giantvoid.notes.base.Objects;
-import com.giantvoid.notes.base.Objects.SearchItem;
+import org.voidnotes.notes.base.AppController;
+import org.voidnotes.notes.base.Objects;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -13,14 +12,12 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import static com.giantvoid.notes.base.Objects.SearchItemType.INVALID;
-
 public class SearchPanel extends JPanel {
     private final AppController controller;
 
     private JTextField searchField;
-    private JList<SearchItem> noteList;
-    private DefaultListModel<SearchItem> noteListModel;
+    private JList<Objects.SearchItem> noteList;
+    private DefaultListModel<Objects.SearchItem> noteListModel;
 
     private boolean updateEnabled = true;
 
@@ -69,7 +66,7 @@ public class SearchPanel extends JPanel {
                 } else if (e.getKeyCode() == KeyEvent.VK_UP && noteList.getSelectedIndex() > 0) {
                     noteList.setSelectedIndex(noteList.getSelectedIndex() - 1);
                     updateSearch();
-                } else if (e.getKeyCode() == KeyEvent.VK_ENTER && noteList.getSelectedValue() != null && noteList.getSelectedValue().type() != INVALID) {
+                } else if (e.getKeyCode() == KeyEvent.VK_ENTER && noteList.getSelectedValue() != null && noteList.getSelectedValue().type() != Objects.SearchItemType.INVALID) {
                     controller.executeSearchInput(noteList.getSelectedValue());
                 }
             }
@@ -83,7 +80,7 @@ public class SearchPanel extends JPanel {
             if (e.getValueIsAdjusting()) {
                 return;
             }
-            SearchItem item = noteList.getSelectedValue();
+            Objects.SearchItem item = noteList.getSelectedValue();
             if (item == null) {
                 return;
             }
@@ -93,7 +90,7 @@ public class SearchPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 searchField.requestFocus();
-                if (e.getClickCount() == 2 && noteList.getSelectedValue() != null && noteList.getSelectedValue().type() != INVALID) {
+                if (e.getClickCount() == 2 && noteList.getSelectedValue() != null && noteList.getSelectedValue().type() != Objects.SearchItemType.INVALID) {
                     controller.executeSearchInput(noteList.getSelectedValue());
                 }
             }
@@ -124,11 +121,11 @@ public class SearchPanel extends JPanel {
         searchField.setText(text);
     }
 
-    public DefaultListModel<SearchItem> getNoteListModel() {
+    public DefaultListModel<Objects.SearchItem> getNoteListModel() {
         return noteListModel;
     }
 
-    public JList<SearchItem> getNoteList() {
+    public JList<Objects.SearchItem> getNoteList() {
         return noteList;
     }
 

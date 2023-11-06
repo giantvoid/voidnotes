@@ -1,4 +1,4 @@
-package com.giantvoid.notes.base;
+package org.voidnotes.notes.base;
 
 import java.nio.file.Path;
 

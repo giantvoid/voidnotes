@@ -1,8 +1,8 @@
-package com.giantvoid.notes.base;
+package org.voidnotes.notes.base;
 
-import com.giantvoid.notes.gui.EditorFrame;
-import com.giantvoid.notes.gui.GuiFactory;
-import com.giantvoid.notes.gui.SearchFrame;
+import org.voidnotes.notes.gui.EditorFrame;
+import org.voidnotes.notes.gui.GuiFactory;
+import org.voidnotes.notes.gui.SearchFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,9 +15,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-import static com.giantvoid.notes.base.Objects.ARG_ON;
-import static com.giantvoid.notes.base.Objects.SearchItem;
-import static com.giantvoid.notes.base.Objects.SearchItemType.*;
+import static org.voidnotes.notes.base.Objects.ARG_ON;
+import static org.voidnotes.notes.base.Objects.SearchItem;
+import static org.voidnotes.notes.base.Objects.SearchItemType.*;
 
 public class AppController {
     private SearchFrame searchFrame;

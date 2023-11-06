@@ -6,10 +6,10 @@
 
     <groupId>com.giantvoid</groupId>
     <artifactId>voidnotes</artifactId>
-    <version>1.2-SNAPSHOT</version>
+    <version>1.2</version>
 
     <name>Void Notes</name>
-    <description>Minimalistic tool for focused, content-oriented note-taking.</description>
+    <description>Note-taking application focused on workflow speed, simplicity and ease of use.</description>
     <url>https://giantvoid.com/void-notes</url>
     <inceptionYear>2023</inceptionYear>
     <licenses>
@@ -63,7 +63,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.giantvoid.notes.VoidNotes</mainClass>
+                            <mainClass>org.voidnotes.notes.VoidNotes</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
